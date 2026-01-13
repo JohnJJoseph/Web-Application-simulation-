@@ -118,11 +118,11 @@ Enable rate limiting and account lockout mechanisms
 
 Keep all software and dependencies up to date
 
-Web_report_john
+
 
 🧑‍💻 Author
 
-John J Joseph
+John
 
 ⚠️ Disclaimer
 
