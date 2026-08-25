@@ -1,131 +1,104 @@
+# Web Application Penetration Testing Project
 
-# Web Application Security Testing – Penetration Testing Project
-📌 Project Overview
+## 📌 Project Overview
+This project focuses on practical **Web Application Penetration Testing** to identify, exploit, and document common security vulnerabilities using industry-standard tools and methodologies. 
 
-This project focuses on practical Web Application Penetration Testing to identify, exploit, and document common security vulnerabilities using industry-standard tools and methodologies.
-The testing was conducted in a controlled lab environment using Kali Linux, targeting intentionally vulnerable applications such as DVWA (Damn Vulnerable Web Application) and testphp.vulnweb.com 
+The testing was conducted in a controlled lab environment using **Kali Linux**, targeting intentionally vulnerable web applications such as **DVWA (Damn Vulnerable Web Application)** and **testphp.vulnweb.com**.
 
+The primary objective of this project is to understand real-world attack vectors and highlight the critical importance of secure software development practices.
 
+---
 
-The goal of this project is to understand real-world attack techniques and highlight the importance of secure development practices.
+## 🎯 Project Objectives
+* **Standardized Testing Framework:** Implement standard phases of web penetration testing.
+* **Vulnerability Mapping:** Identify and categorize vulnerabilities against the **OWASP Top 10**.
+* **Controlled Exploitation:** Safely exploit findings in a sandboxed lab environment to demonstrate risk.
+* **Remediation & Reporting:** Document technical findings and recommend practical engineering fixes.
+* **Tool Proficiency:** Gain hands-on experience with professional offensive and defensive security tools.
 
-🎯 Objectives
+---
 
-Implement standard phases of penetration testing
+## 🔄 Testing Methodology
+The project follows a structured **5-Phase Penetration Testing Methodology**:
 
-Identify vulnerabilities in web applications
+1. **Reconnaissance:** Passive and active information gathering (WHOIS, DNS lookup, tech stack identification).
+2. **Scanning & Enumeration:** Port scanning, directory brute-forcing, service detection, and attack surface mapping.
+3. **Vulnerability Assessment:** Analyzing application behaviors and identifying security flaws mapped to OWASP Top 10.
+4. **Exploitation:** Executing practical attacks and building Proof of Concepts (PoC) to validate severity.
+5. **Reporting & Remediation:** Documenting technical steps, business impact, and remediation guidelines.
 
-Exploit vulnerabilities in a safe lab environment
+---
 
-Document findings and recommend remediation
+## 🛠️ Tools Used
 
-Gain hands-on experience with professional security tools
+| Tool | Purpose |
+| :--- | :--- |
+| **Nmap** | Network discovery and service detection |
+| **Nikto** | Web server vulnerability scanning |
+| **Gobuster** | Directory and file brute-forcing |
+| **Burp Suite** | Intercepting proxy, payload manipulation, and brute-force testing |
+| **OWASP ZAP** | Automated web application vulnerability scanning |
+| **Sublist3r** | Subdomain enumeration |
+| **Amass** | Network mapping and asset discovery |
+| **Wappalyzer** | Web technology stack fingerprinting |
 
+---
 
+## 🚨 Vulnerabilities Identified
 
- Testing Methodology
+The following vulnerabilities were successfully identified and verified through manual exploitation:
 
-The project follows a 5-Phase Penetration Testing Model:
+* **SQL Injection (SQLi)**
+* **Cross-Site Scripting (XSS)** — Reflected, Stored, and DOM-based
+* **Cross-Site Request Forgery (CSRF)**
+* **Brute Force Login Attacks**
+* **Security Misconfigurations**
+* **Directory Listing & Sensitive File Exposure**
+* **Missing Security Headers**
 
-Reconnaissance – Information gathering (WHOIS, DNS, tech stack)
+All findings were categorized in alignment with the **OWASP Top 10** vulnerabilities.
 
-Scanning & Enumeration – Port scans, directory brute force, service detection
+---
 
-Vulnerability Assessment – Mapping issues to OWASP Top 10
+## 💥 Exploitation Highlights
 
-Exploitation – Practical attacks and proof of concept
+### 1. SQL Injection (SQLi)
+* **Execution:** Enumerated underlying database structures using `sqlmap`.
+* **Impact:** Extracted sensitive database tables, credentials, and demonstrated full database compromise.
 
-Reporting & Remediation – Documentation and fix recommendations
+### 2. Cross-Site Request Forgery (CSRF)
+* **Execution:** Successfully changed account passwords without user interaction or valid authentication verification.
+* **Impact:** Token bypass achieved by combining logical session flaws.
 
+### 3. Cross-Site Scripting (XSS)
+* **Execution:** Stole session cookies using DOM-based JavaScript payloads and injected persistent scripts via Stored XSS.
+* **Impact:** Client-side session hijacking and account takeover.
 
-🛠️ Tools Used
-Tool	Purpose
-Nmap	Network discovery and service detection
-Nikto	Web server vulnerability scanning
-Gobuster	Directory and file brute forcing
-Burp Suite	Intercepting requests, brute force, intruder
-OWASP ZAP	Web vulnerability scanning
-Sublist3r	Subdomain enumeration
-Amass	Asset discovery
-Wappalyzer	Technology fingerprinting
+### 4. Brute Force Login Attacks
+* **Execution:** Automated dictionary attacks against authentication endpoints using Burp Suite Intruder.
+* **Impact:** Successful credential recovery due to the absence of rate limiting or account lockout policies.
 
-Web_report_john
+---
 
- Vulnerabilities Identified
+## 🛡️ Remediation Recommendations
 
-The following vulnerabilities were successfully identified and exploited:
+| Vulnerability | Recommended Action |
+| :--- | :--- |
+| **SQL Injection** | Use prepared statements / parameterized queries across all database calls. |
+| **XSS** | Implement strict context-aware output encoding and input validation. |
+| **CSRF** | Enforce anti-CSRF tokens with unique, unpredictable values per session. |
+| **Brute Force** | Implement rate limiting, account lockout policies, and CAPTCHA mechanisms. |
+| **Directory Listing** | Disable directory browsing (`Options -Indexes`) on web servers. |
+| **Security Headers** | Configure HTTP response headers (e.g., CSP, X-Frame-Options, HSTS, X-Content-Type-Options). |
+| **General Hardening** | Maintain routine software updates and patch management for all application dependencies. |
 
- SQL Injection (SQLi)
+---
 
- Cross-Site Scripting (XSS) — Reflected, Stored, DOM
+## 👤 Author
+**Jo**  
+*Web Application Penetration Testing*
 
- Cross-Site Request Forgery (CSRF)
+---
 
- Brute Force Login Attacks
-
- Security Misconfigurations
-
- Directory Listing & Sensitive File Exposure
-
- Missing Security Headers
-
-All vulnerabilities were mapped to OWASP Top 10 categories and verified through exploitation.
-
-Web_report_john
-
- Exploitation Highlights
- SQL Injection
-
-Enumerated databases using SQLMap
-
-Extracted sensitive data from backend tables
-
-Demonstrated full database compromise
-
- CSRF
-
-Password changed without user consent
-
-Token bypass using combined vulnerabilities
-
- XSS
-
-Cookie stealing via DOM-based scripts
-
-Persistent payloads using stored XSS
-
- Brute Force
-
-Successful login using Burp Intruder
-
-No rate limiting or lockout protection
-
-Web_report_john
-
- Remediation Recommendations
-
-Use prepared statements / parameterized queries to prevent SQLi
-
-Implement CSRF tokens with strict validation
-
-Apply input validation and output encoding to stop XSS
-
-Disable directory indexing on web servers
-
-Add security headers (CSP, X-Frame-Options, etc.)
-
-Enable rate limiting and account lockout mechanisms
-
-Keep all software and dependencies up to date
-
-
-
- Author
-
-John
-
-⚠️ Disclaimer
-
-This project was performed only on intentionally vulnerable systems for academic and learning purposes.
-⚠️ Do NOT test real websites without proper authorization.
-Unauthorized penetration testing is illegal.
+> ⚠️ **Disclaimer**  
+> *This project was performed exclusively on intentionally vulnerable systems for academic and educational purposes. Testing real-world targets without explicit written authorization is strictly illegal.*
